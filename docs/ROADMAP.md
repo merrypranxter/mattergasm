@@ -15,7 +15,7 @@
 
 ## ARC I — Birth of beautiful matter
 ### Phase 01 — FIRST PRETTY MONSTER
-**Deliver:** No-build playable mobile-first HTML prototype (root `index.html`) with actually evolving competitive mineral growth; polished generative rosettes/territories/strata; square and *native-composition* 9:16 art; at least three different starter structures with strongly different silhouettes. Art begins as a beautiful composition. Native animation, pause/reseed, deterministic seed, true Surprise Me, basic palette choosing, safe mobile tabbed UI.
+**Deliver:** No-build playable mobile-first HTML prototype (root `index.html`) with actually evolving competitive mineral growth; polished generative rosettes/territories/strata; square and *native-composition* 9:16 art; at least three different starter structures with strongly different silhouettes. Art begins as a beautiful composition. Native animation, pause/reseed, deterministic seed, true Surprise Me, **full source-exact 199-palette catalog from the outset**, safe mobile tabbed UI.
 **Proof:** Touch makes a visual change, seeded restart reproduces composition, portrait is not merely stretched, all relevant controls do something; `index.html` can publish as GitHub Pages without Netlify.
 
 ### Phase 02 — COMPOSITION WITCH
@@ -73,7 +73,7 @@
 **Proof:** Author can reproduce several dramatically distinct image compositions at the same color palette using structural decisions alone.
 
 ### Phase 14 — MASTER MATERIAL + COLOR ALCHEMY
-**Deliver:** All existing named exact palettes; editable swatch stops, favorites, remix, shuffle, warm/cool, neon/electric saturation; family-specific pigments and before/after lighting; optical modes from matte poster inks through wet glass, opal, polarizing crystals, spectral oil and luminous textile. Source colors and physically generated colors remain controlled independently.
+**Deliver:** Expanded controls for the **199 source-exact palettes already present since Phase 01**: editable swatch stops, favorites, remix, shuffle, warm/cool, neon/electric saturation; family-specific pigments and before/after lighting; optical modes from matte poster inks through wet glass, opal, polarizing crystals, spectral oil and luminous textile. Source colors and physically generated colors remain controlled independently.
 **Proof:** Named palettes match source entries, changing lights cannot mutate stored birth pigments, random palettes never corrupt a saved design.
 
 ### Phase 15 — LOOP FORGE II + POLISH / RELEASE
