@@ -5,7 +5,13 @@
 
 Mattergasm is a new, independent, mobile-first mathematical art instrument inspired by [EX NIHILO](https://github.com/merrypranxter/ex_nihilo_art_app) and [EX NIHILO II](https://github.com/merrypranxter/ex_nihilo_2), intended to grow brilliant, hypnotic, strikingly different animated patterns and textures from true mathematical processes rather than cosmetic filters.
 
-**Current status:** planning complete; no app implementation yet. Work begins at **Phase 01** when the artist says **Next**. See [the 15-phase roadmap](docs/ROADMAP.md).
+**Current status:** **Phase 01 source written and pure-logic tested** (real iPhone Safari visual QA still pending). Start with [Phase 01 details](docs/PHASE-01-FIRST-PRETTY-MONSTER.md) or the [15-phase roadmap](docs/ROADMAP.md).
+
+**Free playable source:** [Main app](index.html) · [self-contained offline HTML preview](previews/phase-01-standalone.html) (the GitHub file viewer shows source; download or use GitHub Pages to *run* HTML). Once Pages is enabled, expected URL: https://merrypranxter.github.io/mattergasm/
+
+**Controls in the first build:** live three-species cellular mineral growth, native 1:1/9:16 lattices, touch nuclei, full 199 source palettes, searchable palette/color editing, editable Surprise Me, safe New Design, one-level Undo, PNG and complete JSON save/load.
+
+**Local tests:** `npm test` with installed Node.js (zero npm dependencies). Real device browser/exports not verified yet.
 
 ### The money rule — zero paid hosting
 - **Never call Netlify or initiate its builds, deploy previews, API calls or paid agents.** This repository is not to be connected to Netlify during development.
@@ -14,7 +20,7 @@ Mattergasm is a new, independent, mobile-first mathematical art instrument inspi
 - No new dependency, plugin, network API, or cloud render service should incur charges. Warn and get permission before any service with possible cost.
 
 ### Publishing the playable app
-Once Phase 01 adds a working root `index.html`:
+The root `index.html` now exists (Phase 01):
 1. Go to this repo's **Settings → Pages**.
 2. Under **Build and deployment → Source**, select **Deploy from a branch**.
 3. Pick **main** and **/(root)**, then **Save**.
@@ -39,4 +45,4 @@ Read the original repositories and the artist's related projects. Copy narrowly 
 ### Development rhythm
 **User: “Next” →** implement the next bounded roadmap phase (or honest subphase), test code available in the current runtime, update the GitHub repo, give the working preview path/link *only after confirmed*, and explain what genuinely changed. Do not skip directly to decorative extras or deploy elsewhere.
 
-No phase is complete merely because its README claims it is. Distinguish source written, logic tests passing, browser render verified and actual iPhone Safari/CapCut exports verified.
+Phase 01 has source, pure JavaScript checks, and an assembled standalone HTML preview; full real-device validation remains pending. No phase is complete merely because its README claims it is. Distinguish source written, logic tests passing, browser render verified and actual iPhone Safari/CapCut exports verified.
