@@ -1,6 +1,6 @@
 # MATTERGASM — 15-Phase Artistic Roadmap
 **Dated:** 2026-11-15
-**Planning status:** Phase 00 only. User will advance phases with “Next”.
+**Implementation status:** Phase 01 source written / pure-logic tested; real browser/iPhone QA remains. User advances new phases with “Next”.
 **North star:** The process of matter organizing itself should generate exquisite, wildly varied, powerful abstract art, not just an interesting growth demonstration.
 
 ## Rules applying to *every phase*
@@ -89,4 +89,5 @@
 - **Artifact provenance:** phase status values `proposed | source-written | logic-tested | browser-tested | iPhone-tested | export-verified`; never say tested without observed evidence.
 
 ## Iteration journal
-- 2026-11-15: Repo created by artist, verified empty; roadmap authored. Next requested phase: **01 FIRST PRETTY MONSTER**. Hosting: GitHub Pages preferred; **Netlify excluded**.
+- 2026-11-15: Repo created by artist, verified empty; roadmap authored. Hosting: GitHub Pages preferred; **Netlify excluded**.
+- 2026-11-15: **Phase 01 source written**: 3 growth species, two real aspect-dependent lattices, all 199 exact palettes, interactive mobile UI, PNG / living-world save, Surprise Me, standalone preview. Logic smoke tests passed; browser/actual iPhone QA not done. **Next requested phase: 02 COMPOSITION WITCH** (or Phase 01 bugfix if the user reports a problem).
