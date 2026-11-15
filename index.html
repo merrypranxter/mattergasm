@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090614">
+<meta name="description" content="Mattergasm — an interactive psychedelic mathematical matter-genesis art studio.">
+<title>MATTERGASM · First Pretty Monster</title>
+<style>
+:root{color-scheme:dark;--ink:#080612;--surface:#151226;--edge:#38304c;--pink:#ff49ce;--lime:#c9ff38;--cyan:#52f6f4;--fg:#f4ecff;--muted:#b2a9c5;--stage:60svh}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 30% -15%,#351146 0%,transparent 52%),var(--ink);color:var(--fg);font:14px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+button,input,select{font:inherit}
+button{touch-action:manipulation}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+header{height:48px;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 12px;border-bottom:1px solid #3b304e;background:#110b1d}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}
+.symbol{color:var(--lime);font-size:21px}
+.word{font-size:15px;font-weight:950;letter-spacing:.075em;white-space:nowrap}
+.subtitle{font-size:10px;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.phase{border:1px solid #433557;color:var(--lime);border-radius:999px;padding:4px 8px;font-size:10px;font-weight:750}
+.shell{max-width:1100px;margin:auto}
+.stage-shell{height:var(--stage);min-height:220px;max-height:77svh;background:#03020a;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.artboard{position:relative;flex:0 0 auto;max-width:100%;max-height:100%;height:100%;aspect-ratio:1/1;background:#090510;box-shadow:0 0 70px #7e1b7655}
+canvas#art{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
+.stage-hud{pointer-events:none;position:absolute;top:9px;left:9px;right:9px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;z-index:3}
+.hud-pill{background:#080610bf;border:1px solid #9983c04a;border-radius:999px;backdrop-filter:blur(9px);padding:5px 9px;color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;max-width:78%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hud-pill.status{color:#d5ff7b}
+.stage-tip{pointer-events:none;position:absolute;bottom:10px;left:10px;right:10px;text-align:center;font-size:10px;letter-spacing:.03em;color:#d5c3df;text-shadow:0 1px 5px black}
+.stage-adjust{background:#150f22;display:flex;align-items:center;gap:10px;justify-content:center;height:28px;border-block:1px solid #413250;padding-inline:14px}
+.stage-adjust label{font-size:10px;font-weight:750;color:#beb1d5;white-space:nowrap}
+.stage-adjust input{flex:1;max-width:230px;accent-color:var(--pink)}
+.toolbar{padding:9px 10px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:6px;border-bottom:1px solid var(--edge)}
+.btn{border:1px solid #554169;color:#f4eafa;background:#251b35;border-radius:12px;min-height:43px;padding:8px 10px;font-weight:750;white-space:nowrap}
+.btn.hot{background:linear-gradient(115deg,#fb3293,#bd30f3);border-color:#fb59bc;color:white;box-shadow:0 4px 18px #c300ae44}
+.btn.alt{background:#1b2834;border-color:#3c6571;color:#a9fbfb}
+.btn.quiet{font-size:12px}
+.btn:active{transform:translateY(1px)}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:8px 10px 0}
+.tab{background:none;color:#bdb1cf;border:0;border-bottom:3px solid transparent;min-height:38px;font-size:11px;letter-spacing:.06em;font-weight:800}
+.tab[aria-selected="true"]{color:var(--lime);border-color:var(--lime)}
+.panel{padding:14px 12px 20px}
+.panel[hidden]{display:none!important}
+.panel-title{display:flex;justify-content:space-between;align-items:center;margin:0 0 10px}
+h2{font-size:13px;letter-spacing:.08em;margin:0;text-transform:uppercase}
+p{margin:6px 0 13px;color:var(--muted)}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.field{min-width:0;display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+label{color:#e5dbf2;font-size:12px;font-weight:700}
+label small{color:#a99bb9;font-size:10px;font-weight:400}
+select,input[type=search],input[type=number]{width:100%;min-width:0;border:1px solid #5a4869;border-radius:10px;min-height:42px;padding:8px 9px;background:#1e182c;color:var(--fg)}
+input[type=range]{width:100%;min-height:30px;accent-color:var(--pink)}
+input[type=color]{width:100%;height:42px;border-radius:10px;padding:3px;background:#1e182c;border:1px solid #5a4869}
+.inline{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.value{font-variant-numeric:tabular-nums;color:var(--lime);font-size:11px}
+.swatches{display:flex;gap:3px;min-height:33px;overflow:hidden;border-radius:7px}
+.swatch{flex:1;min-width:2px}
+.note{font-size:11px;color:#b5a6c6;margin-top:8px}
+.buttons{display:flex;gap:8px;flex-wrap:wrap}
+.buttons .btn{flex:1;min-width:105px}
+footer{padding:14px 12px 28px;color:#9c8ead;border-top:1px solid #342a46;font-size:11px}
+a{color:#78ebf6}
+#notice{margin:0 12px 9px;min-height:22px;color:#c7ff73;font-size:11px}
+@media(min-width:760px){.shell{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.7fr);gap:0;align-items:start}.visual{position:sticky;top:0;background:#080612}.settings{min-height:80svh;max-height:100svh;overflow-y:auto;border-left:1px solid var(--edge)}.stage-shell{height:min(78svh,760px);max-height:unset}.toolbar{grid-template-columns:1.5fr 1fr 1fr 1fr}.panel{padding:20px}}
+@media(max-width:355px){.subtitle{display:none}.phase{font-size:9px;padding:3px 6px}.toolbar{gap:4px}.btn{font-size:11px;padding:6px 4px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="brand"><span class="symbol">✺</span><div><div class="word">MATTERGASM</div><div class="subtitle">MATHEMATICS GROWS TROUBLE</div></div></div><span class="phase">01 · FIRST PRETTY MONSTER</span></header>
+<div class="shell">
+<div class="visual">
+  <section class="stage-shell" id="stage" aria-label="Interactive growing mineral artwork">
+    <div class="artboard" id="artboard"><canvas id="art" aria-label="Tap the living artwork to plant a new crystal family"></canvas></div>
+    <div class="stage-hud"><span class="hud-pill" id="hud-mode">◉ LIVING ROSETTES</span><span class="hud-pill status" id="hud-stats">GROWING…</span></div>
+    <div class="stage-tip">TOUCH THE ART TO PLANT A NEW CRYSTAL FAMILY</div>
+  </section>
+  <div class="stage-adjust"><label for="stage-size">↕ ART SIZE</label><input id="stage-size" type="range" min="35" max="77" value="60"><span class="value" id="stage-size-v">60%</span></div>
+  <div class="toolbar">
+    <button type="button" class="btn hot" id="surprise">✦ SURPRISE ME</button>
+    <button type="button" class="btn alt" id="pause">Ⅱ PAUSE</button>
+    <button type="button" class="btn" id="new-design">↻ NEW</button>
+    <button type="button" class="btn quiet" id="undo" disabled>↶ UNDO</button>
+  </div>
+  <div id="notice" aria-live="polite"></div>
+</div>
+<div class="settings">
+<nav class="tabs" aria-label="Studio controls">
+  <button class="tab" data-tab="growth" aria-selected="true">GROW</button>
+  <button class="tab" data-tab="color" aria-selected="false">COLOR</button>
+  <button class="tab" data-tab="finish" aria-selected="false">FINISH</button>
+  <button class="tab" data-tab="save" aria-selected="false">SAVE</button>
+</nav>
+<section id="panel-growth" class="panel" data-panel="growth">
+  <div class="panel-title"><h2>Shape the living matter</h2><span class="value" id="generation">GEN 000</span></div>
+  <div class="fields">
+    <div class="field full"><label for="law">Growth species <small>affects actual new births</small></label>
+      <select id="law"><option value="rosette">✺ POLARIZED ROSETTES</option><option value="dendrite">⚡ ELECTRIC DENDRITES</option><option value="strata">≋ LIVING AGATE STRATA</option></select></div>
+    <div class="field"><label for="aspect">Canvas architecture</label><select id="aspect"><option value="square">1:1 · SQUARE</option><option value="portrait">9:16 · PORTRAIT</option></select></div>
+    <div class="field"><label for="arrangement">Seed arrangement</label><select id="arrangement"><option value="mandala">GOLDEN ORBIT</option><option value="scattered">CHAOTIC COLONIES</option><option value="ribbons">RIBBON SOURCES</option><option value="lattice">CRYSTAL ARRAY</option></select></div>
+    <div class="field"><div class="inline"><label for="seed-count">Starting colonies</label><span class="value" id="seed-count-v">18</span></div><input id="seed-count" type="range" min="3" max="64" value="18"></div>
+    <div class="field"><div class="inline"><label for="density">Coverage target</label><span class="value" id="density-v">92%</span></div><input id="density" type="range" min="25" max="99" value="92"></div>
+    <div class="field full"><div class="inline"><label for="speed">Growth speed</label><span class="value" id="speed-v">2×</span></div><input id="speed" type="range" min="0" max="5" step=".25" value="2"></div>
+  </div>
+  <p class="note">A seed placement is used next time you make a new design. Changing the growth species now changes future births without erasing older matter.</p>
+</section>
+<section id="panel-color" class="panel" data-panel="color" hidden>
+  <div class="panel-title"><h2>The 199-color vault</h2><span class="value" id="palette-count">199 PALETTES</span></div>
+  <div class="fields">
+    <div class="field full"><label for="palette-search">Find a palette by name or source</label><input type="search" id="palette-search" placeholder="Search candy, opal, radioactive, neon…" autocomplete="off"></div>
+    <div class="field full"><label for="palette">Active palette</label><select id="palette"></select></div>
+    <div class="field full"><div id="swatches" class="swatches" aria-label="Current palette colors"></div><div class="note" id="palette-label"></div></div>
+    <div class="field full"><div class="buttons"><button type="button" class="btn alt" id="random-palette">♜ RANDOM PALETTE</button><button type="button" class="btn" id="shuffle-stops">⤨ SHUFFLE STOPS</button></div></div>
+    <div class="field full"><div class="inline"><label for="neon">Electric color boost</label><span class="value" id="neon-v">64%</span></div><input id="neon" type="range" min="0" max="100" value="64"></div>
+    <div class="field"><label for="bg">Background</label><input id="bg" type="color" value="#080612"></div>
+    <div class="field"><label for="color-shift">Pigment phase</label><input id="color-shift" type="range" min="0" max="100" value="0"></div>
+  </div>
+  <p class="note">All original stops are preserved. Palette and color controls change the visual treatment without resetting the living structure.</p>
+</section>
+<section id="panel-finish" class="panel" data-panel="finish" hidden>
+  <div class="panel-title"><h2>Mineral appearance</h2></div>
+  <div class="fields">
+    <div class="field full"><label for="finish">Surface response</label><select id="finish"><option value="mineral">CRYSTAL SHIMMER</option><option value="enamel">LIQUID ENAMEL</option><option value="velvet">VELVET MATTE</option></select></div>
+    <div class="field full"><div class="inline"><label for="detail">Depositional band detail</label><span class="value" id="detail-v">72%</span></div><input id="detail" type="range" min="0" max="100" value="72"></div>
+    <div class="field full"><div class="inline"><label for="borders">Mineral family boundaries</label><span class="value" id="borders-v">54%</span></div><input id="borders" type="range" min="0" max="100" value="54"></div>
+    <div class="field full"><div class="inline"><label for="glow">Luminous halo</label><span class="value" id="glow-v">38%</span></div><input id="glow" type="range" min="0" max="100" value="38"></div>
+  </div>
+  <p class="note">These materials are illustrative looks from real retained birth distance and family contacts. Full optical birefringence comes in Phase 04.</p>
+</section>
+<section id="panel-save" class="panel" data-panel="save" hidden>
+  <div class="panel-title"><h2>Keep the beautiful monsters</h2></div>
+  <p>Save the image, download the complete living world, or restore a previous specimen. The world file includes every birth and the deterministic random state.</p>
+  <div class="buttons">
+    <button type="button" class="btn alt" id="save-png">↓ PNG ART</button>
+    <button type="button" class="btn" id="save-world">↓ SAVE WORLD</button>
+    <button type="button" class="btn" id="load-world">↑ LOAD WORLD</button>
+  </div>
+  <input type="file" id="world-file" accept=".json,application/json" hidden>
+  <p class="note">This phase saves the currently rendered PNG. Animated GIF/MP4 export begins in Phase 06, after we have an honest closed-loop renderer.</p>
+</section>
+<footer>
+  Mattergasm · Phase 01 · Offline mathematical art. No paid APIs, no Netlify, no trackers. Source palettes adapted from EX NIHILO / MATHEMAGICAL.
+  <a href="https://github.com/merrypranxter/mattergasm" rel="noopener">GitHub</a>
+</footer>
+</div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body></html>
